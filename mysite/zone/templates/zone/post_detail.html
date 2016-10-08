@@ -1,0 +1,31 @@
+{% extends 'zone/base.html' %}
+
+
+{% block content %}
+<div class="well">
+    <div class="date ">
+        {% if post.published_date %}
+            {{ post.published_date }}
+        {% else %}
+            {% if user.is_authenticated %}
+                <a class="btn btn-default" href="{% url 'zone.views.post_publish' pk=post.pk %}">Publish</a>
+            {% endif %}
+        {% endif %}
+        {% if user.is_authenticated %}
+            <a class="btn btn-default" href="{% url 'post_edit' pk=post.pk %}">Change<span class="glyphicon glyphicon-pencil"></span></a>
+            <a class="btn btn-default" href="{% url 'post_remove' pk=post.pk %}">Remove<span class="glyphicon glyphicon-remove"></span></a>
+        {% endif %}
+		
+    </div>
+    <h1>{{ post.title }}</h1>
+	{% autoescape off%}
+    <p>{{ post.text|linebreaks }}</p>
+	{% endautoescape %}
+	{% include "zone/duoshuo.html" %}
+</div>
+     {% endblock %}
+	
+          {% block side %}
+			{% include "zone/side.html" %}
+		  {% endblock %}
+		  

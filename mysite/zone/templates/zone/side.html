@@ -1,0 +1,45 @@
+<section id="search" class="widget widget_search">
+	<form role="search" method="get" class="search-form" action="/search/">
+		<input value="" name="s" class="s query" placeholder="Search for" type="text">
+		<button type="submit" class="search-submit"><span style="font-size:20px" class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+		<div class="clearfix"></div>
+	</form>
+</section>
+
+ <section>
+ 
+				<div  class="widget ">
+                    <h3>文章归档</h3>
+                    <ul>
+                        {% for ar in ARCHIVES %}
+                            <li>
+                                <a href="{% url 'zone.views.post_list_by_ym' y=ar.year m=ar.month %}">
+                                    {{ ar.year }}年{{ ar.month }}月</a>&nbsp;({{ ar.number }})
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+</section>
+
+
+
+<section id="linkcat" class="box-right ">
+	<h3 class="widget-title">友情链接</h3>
+	<ul class="box-xy">
+		<li><a href="http://www.codingbo.com/" target="_blank">柳博Coder</a></li>
+                <li><a href="http://www.liumin.club/" target="_blank">刘敏Coder</a></li>
+                <li><a href="http://mooc.guokr.com/" target="_blank" >MOOC学院</a></li>
+                <li><a href="http://andrewliu.tk/" target="_blank">Andrew Liu</a></li>
+                <li><a href="http://www.0xffffff.org/" target="_blank">浅墨的部落格</a></li>
+                <li><a href="http://zh.lucida.me/" target="_blank">Lucida算法</a></li>
+                <li><a href="http://muker.net/" target="_blank">木客</a></li>
+				<li><a href="http://imququ.com/" target="_blank">Jerry Qu</a></li>
+				
+          
+	</ul>
+</section>
+
+
+
+
+				
