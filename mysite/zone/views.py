@@ -1,6 +1,8 @@
 # coding=utf-8
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from .commons import cache_manager
+from django.contrib.auth.models import User
+from django.contrib.auth.forms import UserCreationForm 
 from django.shortcuts import render,get_object_or_404,redirect,HttpResponse,render_to_response
 from django.core.urlresolvers import reverse
 from django.contrib.auth.decorators import login_required
@@ -113,22 +115,22 @@ def full_search(request):
 				  
 def user_register(request):
 	if request.method == "POST":
-		uf = UserForm(request.POST)
+		uf = UserCreationForm(request.POST)
 		if uf.is_valid():
             # #获取表单信息
 			username = uf.cleaned_data['username']
-			passworld = uf.cleaned_data['passworld']
-			email = uf.cleaned_data['email']
+			password1 = uf.cleaned_data['password1']
+			password2 = uf.cleaned_data['password2']
             # #将表单写入数据库
 			user = User()
 			user.username = username
-			user.passworld = passworld
-			user.email = email
+			user.password = password1
 			user.save()
+			print user.password
             # #返回注册成功页面
 			return HttpResponse("Successy!")
 	else:
-		uf = UserForm()
+		uf = UserCreationForm()
 	return render_to_response('zone/register.html',{'uf':uf})
 	
 	
@@ -182,5 +184,29 @@ def blog_search(request):#实现对文章标题的搜索
     return render_to_response('zone/post_list.html',
             locals(),
             context_instance=RequestContext(request))
+
+			
+def myacticles(request):
+	posts=Post.objects.all();
+	return render(request,'zone/myacticles.html',{'posts':posts});
+	
+	
+def About_me(request):
+	return render(request,'zone/About_me.html',{});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 

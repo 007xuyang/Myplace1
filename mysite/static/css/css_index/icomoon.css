@@ -1178,3 +1178,10 @@
 .icon-youtube:before {
 	content: "\e780";
 }
+.icon-left{
+	height: 40px;  
+    width: 24px;  
+    display: block;  
+    
+    background-image: url("/static/img/arrow-right.png"); 
+}
